@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -23,8 +24,8 @@ cout << "Parsing commands..." << endl;
 	// Find our root node
 	root_node = doc.first_node("Instructubles");
 	// Iterate over the brewerys
-	for (xml_node<> * command_node = root_node->first_node(command.c_str()); command_node; command_node = command_node->next_sibling())
-	{
+  xml_node<> * command_node = root_node->first_node(command.c_str());
+
 	    printf("Running adb command: %s no of times %s. \n",
 	    	command_node->first_attribute("name")->value(),
 	    	command_node->first_attribute("iterations")->value());
@@ -37,7 +38,7 @@ cout << "Parsing commands..." << endl;
 	    	printf("Logging: %s\n", Actual_command->value());
 	    }
 	    cout << endl;
-	}
+
 }
 
 void print_commands(void)
@@ -53,11 +54,22 @@ cout << "Parsing commands..." << endl;
 	doc.parse<0>(&buffer[0]);
 	// Find our root node
 	root_node = doc.first_node("Instructubles");
-	printf("No of commands available :%s \n \n",root_node->first_attribute("no_of_commands")->value());
+
+	string iter=root_node->first_attribute("no_of_commands")->value();
+	cout<<"No of commands available :"<<iter<<endl;
+
 	printf("Here are the available commands.\n");
 	// Iterate over the brewerys
-	for (xml_node<> * command_node = root_node->first_node("Commands"); command_node; command_node = command_node->next_sibling())
+    int iters=atoi(iter.c_str());
+
+	for (int i=1; i!=iters+1;i++)
 	{
+
+        char buffer [33];
+	    string adds=itoa (i,buffer,10);
+	    string commands="Commands_";
+	    commands+=adds;
+	    xml_node<> * command_node = root_node->first_node(commands.c_str());
 	    printf("%s.%s. \n",
             command_node->first_attribute("no")->value(),
 	    	command_node->first_attribute("name")->value());
@@ -77,5 +89,13 @@ cout << "Parsing commands..." << endl;
 }
 int main(void)
 {
+string command;
 print_commands();
+cout<<"Entrain a command :";
+cin>>command;
+command_executor(command);
+
+
+
+
 }
