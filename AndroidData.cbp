@@ -30,7 +30,10 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="../../desktop/prog" />
 		</Compiler>
+		<Unit filename="RapidXmlExample.cpp" />
+		<Unit filename="beerJournal.xml" />
 		<Extensions>
 			<code_completion />
 			<envvars />

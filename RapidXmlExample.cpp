@@ -15,7 +15,15 @@ int brute_force=100, timeout=6000,s_timeout=300;
 string banner="**********************************************************\n\\
         Welcome to the Dragon Android Manager\nThis software was designed by Storm, all rights reserved.\n\\
 **********************************************************";
+void command_processor(string commands)
+{
+string adb="adb ";
+adb+=commands;
 
+cout<<"\n*******************ADB|Output***************************\n";
+system(adb.c_str());
+cout<<"*******************ADB|Output***************************\n\n\n";
+}
 void command_executor(string command)
 {
 

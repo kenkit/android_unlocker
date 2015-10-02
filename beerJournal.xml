@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Instructubles no_of_commands="11">
+<Instructubles no_of_commands="12">
     <Commands_1 no="1" name="reboot-recovery" iterations="100">
         <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting into recovery please wait.!"</Actual_command>
     </Commands_1>
-    <Commands_2 no="2" name="install apk" iterations="1">
-       <Actual_command tool="adb" shell_command="install apk">"Installing apk. Please wait.!"</Actual_command>
+    <Commands_2 no="2" name="install Standard user apps." iterations="1">
+       <Actual_command tool="adb" shell_command="install apk">"Installing apks. Please wait.!"</Actual_command>
     </Commands_2>
     <Commands_3 no="3" name="Wipe user data" iterations="1">
         <Actual_command tool="adb" shell_command="wipe data">"Wiping user data. Please wait.!"</Actual_command>
@@ -31,10 +31,16 @@
         <Actual_command tool="adb" shell_command="shell echo 'boot-recovery ' > /cache/recovery/command">"Recovery command."</Actual_command>
         <Actual_command tool="adb" shell_command="shell echo '--wipe_data' >> /cache/recovery/command">"Wipe data"</Actual_command>
         <Actual_command tool="adb" shell_command="shell echo '--wipe_cache' >> /cache/recovery/command">"Wipe cache."</Actual_command>
-        <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting Recovery."</Actual_command>
+        <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting Device."</Actual_command>
     </Commands_10>
-   <Commands_11 no="11" name="Exit" iterations="1">
+   <Commands_11 no="11" name="Reset Pattern/Pin" iterations="1">
+        <Actual_command tool="adb" shell_command="shell sqlite3 /data/data/com.android.providers.settings/databases/settings.db update system set value=0 where name='lock_pattern_autolock';">"Lock screen patter reset."</Actual_command>
+        <Actual_command tool="adb" shell_command="shell sqlite3 /data/data/com.android.providers.settings/databases/settings.db update system set value=0 where name='lockscreen.lockedoutpermanently';">"Disable permanent lock."</Actual_command>
+        <Actual_command tool="adb" shell_command="adb shell rm /data/system/gesture.key">"Removed the gesture key."</Actual_command>
+        <Actual_command tool="adb" shell_command="reboot ">"Rebooting Device."</Actual_command>
+    </Commands_11>
+   <Commands_12 no="12" name="Exit" iterations="1">
         <Actual_command tool="adb" shell_command="kill-server">"Closing adb server."</Actual_command>
          <Actual_command tool="exit" shell_command="0">"Exiting."</Actual_command>
-    </Commands_11>
+    </Commands_12>
 </Instructubles>
