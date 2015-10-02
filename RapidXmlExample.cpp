@@ -12,6 +12,7 @@ int max_commands=0;
 
 void command_executor(string command)
 {
+
 cout << "Parsing commands..." << endl;
 	xml_document<> doc;
 	xml_node<> * root_node;
@@ -25,15 +26,21 @@ cout << "Parsing commands..." << endl;
 	root_node = doc.first_node("Instructubles");
 	// Iterate over the brewerys
 string commansd="Commands_";
+string iter;
+int iters;
 commansd+=command;
 
 
   xml_node<> * command_node = root_node->first_node(commansd.c_str());
-
-	    printf("Running adb command: %s no of times %s. \n",
+iter=command_node->first_attribute("iterations")->value();
+iters=atoi(iter.c_str());
+	    printf("Running %s command: %s no of times. \n",
 	    	command_node->first_attribute("name")->value(),
 	    	command_node->first_attribute("iterations")->value());
+
+
             // Interate over the beers
+        for (int i=0;i<iters;i++)
 	    for(xml_node<> * Actual_command = command_node->first_node("Actual_command"); Actual_command; Actual_command = Actual_command->next_sibling())
 	    {
 	    	printf("Using  %s to run %s. \n\n",

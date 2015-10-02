@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Instructubles no_of_commands="4">
+<Instructubles no_of_commands="5">
     <Commands_1 no="1" name="reboot recovery" iterations="5">
         <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting into recovery please wait.!"</Actual_command>
     </Commands_1>
@@ -12,4 +12,7 @@
     <Commands_4 no="4" name="shutdown" iterations="1">
         <Actual_command tool="adb" shell_command="wipe data">"Shutting down. Please wait.!"</Actual_command>
     </Commands_4>
+    <Commands_5 no="5" name="walalalal" iterations="1">
+        <Actual_command tool="adb" shell_command="wipe data">"walalalal!"</Actual_command>
+    </Commands_5>
 </Instructubles>
