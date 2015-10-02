@@ -4,11 +4,17 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <windows.h>
 #include "rapidxml-1.13/rapidxml.hpp"
 
 using namespace rapidxml;
 using namespace std;
 int max_commands=0;
+int brute_force=100, timeout=6000,s_timeout=300;
+
+string banner="**********************************************************\n\\
+        Welcome to the Dragon Android Manager\nThis software was designed by Storm, all rights reserved.\n\\
+**********************************************************";
 
 void command_executor(string command)
 {
@@ -69,7 +75,7 @@ cout << "Parsing commands..." << endl;
 
 	cout<<"No of commands available :"<<iter<<endl;
 
-	printf("Here are the available commands.\n");
+	printf("Here are the available commands.\n\n");
 	// Iterate over the brewerys
     int iters=atoi(iter.c_str());
     max_commands=iters;
@@ -81,6 +87,7 @@ cout << "Parsing commands..." << endl;
 	    string commands="Commands_";
 	    commands+=adds;
 	    xml_node<> * command_node = root_node->first_node(commands.c_str());
+	    Sleep(s_timeout);
 	    printf("%s.%s. \n",
             command_node->first_attribute("no")->value(),
 	    	command_node->first_attribute("name")->value());
@@ -101,9 +108,13 @@ cout << "Parsing commands..." << endl;
 int main(void)
 {
 string command;
-while (1)
 
+
+while (1)
 {
+
+cout<<banner;
+Sleep(s_timeout);
 print_commands();
 cout<<"Entrain a command :";
 cin>>command;

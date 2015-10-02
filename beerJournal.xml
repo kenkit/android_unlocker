@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Instructubles no_of_commands="5">
-    <Commands_1 no="1" name="reboot recovery" iterations="100">
+<Instructubles no_of_commands="11">
+    <Commands_1 no="1" name="reboot-recovery" iterations="100">
         <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting into recovery please wait.!"</Actual_command>
     </Commands_1>
     <Commands_2 no="2" name="install apk" iterations="1">
@@ -12,7 +12,29 @@
     <Commands_4 no="4" name="shutdown" iterations="1">
         <Actual_command tool="adb" shell_command="wipe data">"Shutting down. Please wait.!"</Actual_command>
     </Commands_4>
-    <Commands_5 no="5" name="walalalal" iterations="1">
-        <Actual_command tool="adb" shell_command="wipe data">"walalalal!"</Actual_command>
+    <Commands_5 no="5" name="start-adb-server" iterations="1">
+        <Actual_command tool="adb" shell_command="start-server">"Starting adb server."</Actual_command>
     </Commands_5>
+    <Commands_6 no="6" name="Kill-adb-server" iterations="1">
+        <Actual_command tool="adb" shell_command="kill-server">"Closing adb server."</Actual_command>
+    </Commands_6>
+   <Commands_7 no="7" name="(Chinese)Shift fastboot.(Brute Force)." iterations="300">
+        <Actual_command tool="adb" shell_command="reboot recovery">"Shifting mode."</Actual_command>
+    </Commands_7>
+   <Commands_8 no="8" name="(Chinese)Shift bootloader.(Brute Force)." iterations="300">
+        <Actual_command tool="adb" shell_command="reboot bootloader">"Shifting mode."</Actual_command>
+    </Commands_8>	
+   <Commands_9 no="9" name="Reboot recovery" iterations="1">
+        <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting Recovery."</Actual_command>
+    </Commands_9>
+   <Commands_10 no="10" name="Factory reset" iterations="1">
+        <Actual_command tool="adb" shell_command="shell echo 'boot-recovery ' > /cache/recovery/command">"Recovery command."</Actual_command>
+        <Actual_command tool="adb" shell_command="shell echo '--wipe_data' >> /cache/recovery/command">"Wipe data"</Actual_command>
+        <Actual_command tool="adb" shell_command="shell echo '--wipe_cache' >> /cache/recovery/command">"Wipe cache."</Actual_command>
+        <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting Recovery."</Actual_command>
+    </Commands_10>
+   <Commands_11 no="11" name="Exit" iterations="1">
+        <Actual_command tool="adb" shell_command="kill-server">"Closing adb server."</Actual_command>
+         <Actual_command tool="exit" shell_command="0">"Exiting."</Actual_command>
+    </Commands_11>
 </Instructubles>
