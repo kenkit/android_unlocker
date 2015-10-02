@@ -24,7 +24,11 @@ cout << "Parsing commands..." << endl;
 	// Find our root node
 	root_node = doc.first_node("Instructubles");
 	// Iterate over the brewerys
-  xml_node<> * command_node = root_node->first_node(command.c_str());
+string commansd="Commands_";
+commansd+=command;
+
+
+  xml_node<> * command_node = root_node->first_node(commansd.c_str());
 
 	    printf("Running adb command: %s no of times %s. \n",
 	    	command_node->first_attribute("name")->value(),
