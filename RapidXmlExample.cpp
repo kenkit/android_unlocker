@@ -37,8 +37,6 @@ iters=atoi(iter.c_str());
 	    printf("Running %s command: %s no of times. \n",
 	    	command_node->first_attribute("name")->value(),
 	    	command_node->first_attribute("iterations")->value());
-
-
             // Interate over the beers
         for (int i=0;i<iters;i++)
 	    for(xml_node<> * Actual_command = command_node->first_node("Actual_command"); Actual_command; Actual_command = Actual_command->next_sibling())
@@ -47,6 +45,7 @@ iters=atoi(iter.c_str());
 	    		Actual_command->first_attribute("tool")->value(),
 	    		Actual_command->first_attribute("shell_command")->value());
 	    	printf("Logging: %s\n", Actual_command->value());
+	    	cout<<"Count :"<<i<<endl;
 	    }
 	    cout << endl;
 
@@ -108,7 +107,7 @@ while (1)
 print_commands();
 cout<<"Entrain a command :";
 cin>>command;
-if (atoi(command.c_str())>max_commands)
+if (atoi(command.c_str())>max_commands||atoi(command.c_str())==0)
     cout<<"Invalid Command."<<endl;
 else
     command_executor(command);

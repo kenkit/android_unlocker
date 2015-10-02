@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Instructubles no_of_commands="5">
-    <Commands_1 no="1" name="reboot recovery" iterations="5">
+    <Commands_1 no="1" name="reboot recovery" iterations="1">
         <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting into recovery please wait.!"</Actual_command>
     </Commands_1>
     <Commands_2 no="2" name="install apk" iterations="1">
