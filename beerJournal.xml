@@ -4,12 +4,12 @@
         <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting into recovery please wait.!"</Actual_command>
     </Commands_1>
     <Commands_2 no="2" name="install apk" iterations="1">
-       <Actual_command tool="adb" shell_command="install apk">"Installing apk please wait.!"</Actual_command>
+       <Actual_command tool="adb" shell_command="install apk">"Installing apk. Please wait.!"</Actual_command>
     </Commands_2>
     <Commands_3 no="3" name="Wipe user data" iterations="1">
-        <Actual_command tool="adb" shell_command="wipe data">"Wiping user data please wait.!"</Actual_command>
+        <Actual_command tool="adb" shell_command="wipe data">"Wiping user data. Please wait.!"</Actual_command>
     </Commands_3>
     <Commands_4 no="4" name="shutdown" iterations="1">
-        <Actual_command tool="adb" shell_command="wipe data">"Wiping user data please wait.!"</Actual_command>
+        <Actual_command tool="adb" shell_command="wipe data">"Shutting down. Please wait.!"</Actual_command>
     </Commands_4>
 </Instructubles>

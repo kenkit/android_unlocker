@@ -8,7 +8,7 @@
 
 using namespace rapidxml;
 using namespace std;
-
+int max_commands=0;
 
 void command_executor(string command)
 {
@@ -60,12 +60,13 @@ cout << "Parsing commands..." << endl;
 	root_node = doc.first_node("Instructubles");
 
 	string iter=root_node->first_attribute("no_of_commands")->value();
+
 	cout<<"No of commands available :"<<iter<<endl;
 
 	printf("Here are the available commands.\n");
 	// Iterate over the brewerys
     int iters=atoi(iter.c_str());
-
+    max_commands=iters;
 	for (int i=1; i!=iters+1;i++)
 	{
 
@@ -94,11 +95,17 @@ cout << "Parsing commands..." << endl;
 int main(void)
 {
 string command;
+while (1)
+
+{
 print_commands();
 cout<<"Entrain a command :";
 cin>>command;
-command_executor(command);
-
+if (atoi(command.c_str())>max_commands)
+    cout<<"Invalid Command."<<endl;
+else
+    command_executor(command);
+}
 
 
 
