@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Instructubles>
+    <Commands name="reboot recovery" iterations="5">
+        <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting into recovery please wait.!"</Actual_command>
+    </Commands>
+    <Commands name="install apk" iterations="1">
+       <Actual_command tool="adb" shell_command="install apk">"Installing apk please wait.!"</Actual_command>
+    </Commands>
+    <Commands name="Wipe user data" iterations="1">
+        <Actual_command tool="adb" shell_command="wipe data">"Wiping user data please wait.!"</Actual_command>
+    </Commands>
+</Instructubles>
