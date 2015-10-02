@@ -13,7 +13,7 @@ int max_commands=0;
 void command_executor(string command)
 {
 
-cout << "Parsing commands..." << endl;
+    cout << "Parsing commands..." << endl;
 	xml_document<> doc;
 	xml_node<> * root_node;
 	// Read the xml file into a vector
@@ -25,15 +25,15 @@ cout << "Parsing commands..." << endl;
 	// Find our root node
 	root_node = doc.first_node("Instructubles");
 	// Iterate over the brewerys
-string commansd="Commands_";
-string iter;
-int iters;
-commansd+=command;
+    string commansd="Commands_";
+    string iter;
+    int iters;
+    commansd+=command;
 
 
-  xml_node<> * command_node = root_node->first_node(commansd.c_str());
-iter=command_node->first_attribute("iterations")->value();
-iters=atoi(iter.c_str());
+    xml_node<> * command_node = root_node->first_node(commansd.c_str());
+    iter=command_node->first_attribute("iterations")->value();
+    iters=atoi(iter.c_str());
 	    printf("Running %s command: %s no of times. \n",
 	    	command_node->first_attribute("name")->value(),
 	    	command_node->first_attribute("iterations")->value());
@@ -45,7 +45,7 @@ iters=atoi(iter.c_str());
 	    		Actual_command->first_attribute("tool")->value(),
 	    		Actual_command->first_attribute("shell_command")->value());
 	    	printf("Logging: %s\n", Actual_command->value());
-	    	cout<<"Count :"<<i<<endl;
+	    	cout<<"Count :"<<i+1<<endl;
 	    }
 	    cout << endl;
 
