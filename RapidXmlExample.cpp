@@ -17,11 +17,10 @@ string banner="**********************************************************\n\\
 **********************************************************";
 void command_processor(string commands)
 {
-string adb="adb ";
-adb+=commands;
+
 
 cout<<"\n*******************ADB|Output***************************\n";
-system(adb.c_str());
+system(commands.c_str());
 cout<<"*******************ADB|Output***************************\n\n\n";
 }
 void command_executor(string command)
@@ -41,9 +40,10 @@ void command_executor(string command)
 	// Iterate over the brewerys
     string commansd="Commands_";
     string iter;
+    string ha=" ";
     int iters;
     commansd+=command;
-
+    string commands;
 
     xml_node<> * command_node = root_node->first_node(commansd.c_str());
     iter=command_node->first_attribute("iterations")->value();
@@ -55,10 +55,15 @@ void command_executor(string command)
         for (int i=0;i<iters;i++)
 	    for(xml_node<> * Actual_command = command_node->first_node("Actual_command"); Actual_command; Actual_command = Actual_command->next_sibling())
 	    {
-	    	printf("Using  %s to run %s. \n\n",
-	    		Actual_command->first_attribute("tool")->value(),
-	    		Actual_command->first_attribute("shell_command")->value());
+
+
+	    		commands+=Actual_command->first_attribute("tool")->value();
+                commands+=ha;
+	    		commands+=Actual_command->first_attribute("shell_command")->value();
+
 	    	printf("Logging: %s\n", Actual_command->value());
+	    	command_processor(commands);
+	    	commands="";
 	    	cout<<"Count :"<<i+1<<endl;
 	    }
 	    cout << endl;
