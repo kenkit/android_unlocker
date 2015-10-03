@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1443778946 source:c:\users\latitude e5500\desktop\dragon\androiddata\rapidxmlexample.cpp
+1443877158 source:c:\users\latitude e5500\desktop\dragon\androiddata\rapidxmlexample.cpp
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
 	<iostream>
 	<fstream>
 	<vector>
+	<windows.h>
 	"rapidxml-1.13/rapidxml.hpp"
 
 1242168378 c:\users\latitude e5500\desktop\desktop\prog\\rapidxml-1.13\rapidxml.hpp
