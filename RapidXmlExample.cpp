@@ -238,7 +238,7 @@ void select_from_initial_entry(string menu_file,string menu_item_no)
     //iter=command_node->first_attribute("no_of_items")->value();
     //iters=atoi(iter.c_str());
 	    printf("Running %s command: %s no of times. \n",
-	    	command_node->first_attribute("item_name")->value());
+	    	command_node->first_attribute("file")->value());
             // Interate over the beers
 
 	    cout << endl;
@@ -269,7 +269,7 @@ string selected;
 display_initial_entry("items.xml");
 cout<<"Enter a command"<<endl;
 cin>>selected;
-select_from_initial_entry("items.xml",selected);
+select_from_initial_entry("items.xml","1");
 
 
 }
