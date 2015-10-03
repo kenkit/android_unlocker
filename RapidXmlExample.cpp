@@ -69,14 +69,59 @@ void command_executor(string command)
 	    cout << endl;
 
 }
+void command_selector(string command)
+{
 
-void print_commands(void)
+    cout << "Parsing commands..." << endl;
+	xml_document<> doc;
+	xml_node<> * root_node;
+	// Read the xml file into a vector
+	ifstream theFile ("beerJournal.xml");
+	vector<char> buffer((istreambuf_iterator<char>(theFile)), istreambuf_iterator<char>());
+	buffer.push_back('\0');
+	// Parse the buffer using the xml file parsing library into doc
+	doc.parse<0>(&buffer[0]);
+	// Find our root node
+	root_node = doc.first_node("Instructubles");
+	// Iterate over the brewerys
+    string commansd="Commands_";
+    string iter;
+    string ha=" ";
+    int iters;
+    commansd+=command;
+    string commands;
+
+    xml_node<> * command_node = root_node->first_node(commansd.c_str());
+    iter=command_node->first_attribute("iterations")->value();
+    iters=atoi(iter.c_str());
+	    printf("Running %s command: %s no of times. \n",
+	    	command_node->first_attribute("name")->value(),
+	    	command_node->first_attribute("iterations")->value());
+            // Interate over the beers
+        for (int i=0;i<iters;i++)
+	    for(xml_node<> * Actual_command = command_node->first_node("Actual_command"); Actual_command; Actual_command = Actual_command->next_sibling())
+	    {
+
+
+	    		commands+=Actual_command->first_attribute("tool")->value();
+                commands+=ha;
+	    		commands+=Actual_command->first_attribute("shell_command")->value();
+
+	    	printf("Logging: %s\n", Actual_command->value());
+	    	command_processor(commands);
+	    	commands="";
+	    	cout<<"Count :"<<i+1<<endl;
+	    }
+	    cout << endl;
+
+}
+void print_commands(string xml_filename)
 {
 cout << "Parsing commands..." << endl;
 	xml_document<> doc;
 	xml_node<> * root_node;
 	// Read the xml file into a vector
-	ifstream theFile ("beerJournal.xml");
+	ifstream theFile (xml_filename.c_str());
 	vector<char> buffer((istreambuf_iterator<char>(theFile)), istreambuf_iterator<char>());
 	buffer.push_back('\0');
 	// Parse the buffer using the xml file parsing library into doc
@@ -166,6 +211,39 @@ cout << "Parsing commands..." << endl;
 	    //cout << endl;
 	}
 }
+
+void select_from_initial_entry(string menu_file,string menu_item_no)
+{
+
+    cout << "Parsing commands..." << endl;
+	xml_document<> doc;
+	xml_node<> * root_node;
+	// Read the xml file into a vector
+	ifstream theFile (menu_file.c_str());
+	vector<char> buffer((istreambuf_iterator<char>(theFile)), istreambuf_iterator<char>());
+	buffer.push_back('\0');
+	// Parse the buffer using the xml file parsing library into doc
+	doc.parse<0>(&buffer[0]);
+	// Find our root node
+	root_node = doc.first_node("Instructubles");
+	// Iterate over the brewerys
+    string commansd="acvite_item_";
+    string iter;
+    string ha=" ";
+    int iters;
+    commansd+=menu_item_no;
+    string commands;
+
+    xml_node<> * command_node = root_node->first_node(commansd.c_str());
+    //iter=command_node->first_attribute("no_of_items")->value();
+    //iters=atoi(iter.c_str());
+	    printf("Running %s command: %s no of times. \n",
+	    	command_node->first_attribute("item_name")->value());
+            // Interate over the beers
+
+	    cout << endl;
+
+}
 int main(void)
 {
 
@@ -187,8 +265,11 @@ else
     command_executor(command);
 }
 **/
+string selected;
 display_initial_entry("items.xml");
-
+cout<<"Enter a command"<<endl;
+cin>>selected;
+select_from_initial_entry("items.xml",selected);
 
 
 }
