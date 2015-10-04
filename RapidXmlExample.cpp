@@ -23,14 +23,14 @@ cout<<"\n*******************ADB|Output***************************\n";
 system(commands.c_str());
 cout<<"*******************ADB|Output***************************\n\n\n";
 }
-void command_executor(string command)
+void command_executor(string file_name,string command)
 {
 
     cout << "Parsing commands..." << endl;
 	xml_document<> doc;
 	xml_node<> * root_node;
 	// Read the xml file into a vector
-	ifstream theFile ("beerJournal.xml");
+	ifstream theFile (file_name.c_str());
 	vector<char> buffer((istreambuf_iterator<char>(theFile)), istreambuf_iterator<char>());
 	buffer.push_back('\0');
 	// Parse the buffer using the xml file parsing library into doc
@@ -231,7 +231,7 @@ void select_from_initial_entry(string menu_file,string menu_item_no)
     string iter;
     int iters;
     commansd+=menu_item_no;
-    string commands;
+    string commands,choice;
 
     xml_node<> * command_node = root_node->first_node(commansd.c_str());
     //iter=command_node->first_attribute("no_of_items")->value();
@@ -240,6 +240,9 @@ void select_from_initial_entry(string menu_file,string menu_item_no)
 
             // Interate over the beers
         print_commands(command_node->first_attribute("file")->value());
+        cout<<"Enter your choice"<<endl;
+        cin>>choice;
+        command_executor(command_node->first_attribute("file")->value(),choice);
 	    //cout << endl;
 
 }
