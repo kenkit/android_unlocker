@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Instructubles no_of_commands="10">
-    <Commands_1 no="1" name="reboot-Normal mode" iterations="100">
+<Instructubles no_of_commands="9">
+    <Commands_1 no="1" name="Reboot-Normal mode" iterations="1">
         <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting normally please wait.!"</Actual_command>
     </Commands_1>
     <Commands_2 no="2" name="Wipe user data" iterations="1">
@@ -15,7 +15,7 @@
     <Commands_5 no="5" name="Kill-adb-server" iterations="1">
         <Actual_command tool="adb" shell_command="kill-server">"Closing adb server."</Actual_command>
     </Commands_5>
-   <Commands6 no="6" name="(Chinese)Shift fastboot.(Brute Force)." iterations="300">
+   <Commands_6 no="6" name="(Chinese)Shift fastboot.(Brute Force)." iterations="300">
         <Actual_command tool="adb" shell_command="reboot recovery">"Shifting mode."</Actual_command>
     </Commands_6>
    <Commands_7 no="7" name="(Chinese)Shift bootloader.(Brute Force)." iterations="300">
@@ -24,16 +24,10 @@
    <Commands_8 no="8" name="Reboot recovery" iterations="1">
         <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting Recovery."</Actual_command>
     </Commands_8>
-   <Commands_9 no="9" name="Factory reset" iterations="1">
-        <Actual_command tool="adb" shell_command="shell echo 'boot-recovery ' > /cache/recovery/command">"Recovery command."</Actual_command>
-        <Actual_command tool="adb" shell_command="shell echo '--wipe_data' >> /cache/recovery/command">"Wipe data"</Actual_command>
-        <Actual_command tool="adb" shell_command="shell echo '--wipe_cache' >> /cache/recovery/command">"Wipe cache."</Actual_command>
-        <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting Device."</Actual_command>
-    </Commands_9>
-   <Commands_10 no="10" name="Reset Pattern/Pin" iterations="1">
-        <Actual_command tool="adb" shell_command="shell sqlite3 /data/data/com.android.providers.settings/databases/settings.db update system set value=0 where name='lock_pattern_autolock';">"Lock screen patter reset."</Actual_command>
-        <Actual_command tool="adb" shell_command="shell sqlite3 /data/data/com.android.providers.settings/databases/settings.db update system set value=0 where name='lockscreen.lockedoutpermanently';">"Disable permanent lock."</Actual_command>
-        <Actual_command tool="adb" shell_command="adb shell rm /data/system/gesture.key">"Removed the gesture key."</Actual_command>
+   <Commands_9 no="9" name="Reset Pattern/Pin" iterations="1">
+        <Actual_command tool="adb" shell_command="shell su -c 'echo 'update system set value=0 where name='lock_pattern_autolock';'  | sqlite3 /data/data/com.android.providers.settings/databases/settings.db '">"Lock screen patter reset."</Actual_command>
+        <Actual_command tool="adb" shell_command="shell su -c 'echo 'update system set value=0 where name='lockscreen.lockedoutpermanently';'  | sqlite3 /data/data/com.android.providers.settings/databases/settings.db' ">"Disable permanent lock."</Actual_command>
+        <Actual_command tool="adb" shell_command="shell su -c 'shell rm /data/system/gesture.key'">"Removed the gesture key."</Actual_command>
         <Actual_command tool="adb" shell_command="reboot ">"Rebooting Device."</Actual_command>
-    </Commands_10>
+    </Commands_9>
 </Instructubles>

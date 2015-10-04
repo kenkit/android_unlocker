@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Instructubles no_of_commands="2">
     <Commands_1 no="1" name="Wipe user data" iterations="1">
-        <Actual_command tool="fastboot" shell_command="format userdata">"Wiping user data. Please wait.!"</Actual_command>
+        <Actual_command tool="fastboot" shell_command="erase userdata">"Wiping user data. Please wait.!"</Actual_command>
+		<Actual_command tool="fastboot" shell_command="reboot">"Rebooting. Please wait.!"</Actual_command>
     </Commands_1>
     <Commands_2 no="2" name="Wipe cache" iterations="1">
-        <Actual_command tool="fastboot" shell_command="format cache">"Wiping cache. Please wait.!"</Actual_command>
+        <Actual_command tool="fastboot" shell_command="erase cache">"Wiping cache. Please wait.!"</Actual_command>
+		<Actual_command tool="fastboot" shell_command="reboot">"Rebooting. Please wait.!"</Actual_command>
     </Commands_2>
 </Instructubles>
