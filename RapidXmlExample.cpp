@@ -6,15 +6,16 @@
 #include <vector>
 #include <windows.h>
 #include "rapidxml-1.13/rapidxml.hpp"
-
+#include <conio.h>
 using namespace rapidxml;
 using namespace std;
 int max_commands=0;
-int brute_force=100, timeout=6000,s_timeout=300,to_exit=0;
+int brute_force=100, timeout=4000,s_timeout=300,to_exit=0;
 
 string banner="**********************************************************\n\\
         Welcome to the Dragon Android Manager\nThis software was designed by Storm, all rights reserved.\n\\
 **********************************************************";
+void ClearScreen(void);
 void command_processor(string commands)
 {
 
@@ -48,9 +49,8 @@ void command_executor(string file_name,string command)
     xml_node<> * command_node = root_node->first_node(commansd.c_str());
     iter=command_node->first_attribute("iterations")->value();
     iters=atoi(iter.c_str());
-	    printf("Running %s command: %s no of times. \n",
-	    	command_node->first_attribute("name")->value(),
-	    	command_node->first_attribute("iterations")->value());
+	    cout<<"Running :"<<command_node->first_attribute("name")->value()<<endl<<command_node->first_attribute("iterations")->value()<<":no of times. \n";
+
             // Interate over the beers
         for (int i=0;i<iters;i++)
 	    for(xml_node<> * Actual_command = command_node->first_node("Actual_command"); Actual_command; Actual_command = Actual_command->next_sibling())
@@ -61,7 +61,7 @@ void command_executor(string file_name,string command)
                 commands+=ha;
 	    		commands+=Actual_command->first_attribute("shell_command")->value();
 
-	    	printf("Logging: %s\n", Actual_command->value());
+	    	cout<<"Logging: "<<Actual_command->value()<<endl;
 	    	command_processor(commands);
 	    	commands="";
 	    	cout<<"Count :"<<i+1<<endl;
@@ -94,9 +94,8 @@ void command_selector(string filename,string command)
     xml_node<> * command_node = root_node->first_node(commansd.c_str());
     iter=command_node->first_attribute("iterations")->value();
     iters=atoi(iter.c_str());
-	    printf("Running %s command: %s no of times. \n",
-	    	command_node->first_attribute("name")->value(),
-	    	command_node->first_attribute("iterations")->value());
+
+	    	cout<<"Running :"<<command_node->first_attribute("name")->value()<<"\n"<<command_node->first_attribute("iterations")->value()<< "No of times \n";
             // Interate over the beers
         for (int i=0;i<iters;i++)
 	    for(xml_node<> * Actual_command = command_node->first_node("Actual_command"); Actual_command; Actual_command = Actual_command->next_sibling())
@@ -107,7 +106,7 @@ void command_selector(string filename,string command)
                 commands+=ha;
 	    		commands+=Actual_command->first_attribute("shell_command")->value();
 
-	    	printf("Logging: %s\n", Actual_command->value());
+	    	cout<<"Logging: "<<Actual_command->value()<<"\n";
 	    	command_processor(commands);
 	    	commands="";
 	    	cout<<"Count :"<<i+1<<endl;
@@ -133,7 +132,7 @@ cout << "Parsing commands..." << endl;
 
 	cout<<"No of commands available :"<<iter<<endl;
 
-	printf("Here are the available commands.\n\n");
+	cout<<"Here are the available commands.\n\n";
 	// Iterate over the brewerys
     int iters=atoi(iter.c_str());
     max_commands=iters;
@@ -245,7 +244,8 @@ void select_from_initial_entry(string menu_file,string menu_item_no)
             // Interate over the beers
        while(!breaks)
        {
-
+        Sleep(timeout);
+        ClearScreen();
         print_commands(command_node->first_attribute("file")->value());
         cout<<"Enter your choice"<<endl;
         cin>>choice;
@@ -260,6 +260,42 @@ void select_from_initial_entry(string menu_file,string menu_item_no)
 
 
 }
+void ClearScreen()
+  {
+  HANDLE                     hStdOut;
+  CONSOLE_SCREEN_BUFFER_INFO csbi;
+  DWORD                      count;
+  DWORD                      cellCount;
+  COORD                      homeCoords = { 0, 0 };
+
+  hStdOut = GetStdHandle( STD_OUTPUT_HANDLE );
+  if (hStdOut == INVALID_HANDLE_VALUE) return;
+
+  /* Get the number of cells in the current buffer */
+  if (!GetConsoleScreenBufferInfo( hStdOut, &csbi )) return;
+  cellCount = csbi.dwSize.X *csbi.dwSize.Y;
+
+  /* Fill the entire buffer with spaces */
+  if (!FillConsoleOutputCharacter(
+    hStdOut,
+    (TCHAR) ' ',
+    cellCount,
+    homeCoords,
+    &count
+    )) return;
+
+  /* Fill the entire buffer with the current colors and attributes */
+  if (!FillConsoleOutputAttribute(
+    hStdOut,
+    csbi.wAttributes,
+    cellCount,
+    homeCoords,
+    &count
+    )) return;
+
+  /* Move the cursor home */
+  SetConsoleCursorPosition( hStdOut, homeCoords );
+  }
 int main(void)
 {
 
@@ -286,6 +322,12 @@ string selected;
 
 while (1)
 {
+
+
+
+cout<<banner<<endl;
+Sleep(timeout);
+ClearScreen();
 display_initial_entry("items.xml");
 cout<<"Entrain a command :"<<endl;
 cin>>selected;
@@ -298,7 +340,11 @@ if (atoi(selected.c_str())==max_commands+1)
 else if (atoi(selected.c_str())>max_commands||atoi(selected.c_str())==0)
     cout<<"Invalid Command."<<endl;
 else
+{
+    ClearScreen();
     select_from_initial_entry("items.xml",selected);
+}
+
 }
 
 
