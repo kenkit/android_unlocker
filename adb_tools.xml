@@ -31,6 +31,9 @@
         <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting Recovery."</Actual_command>
     </Commands_10>
    <Commands_11 no="11" name="Factory reset" iterations="1">
+		<Actual_command tool="adb" shell_command="shell echo 'boot-recovery ' > /cache/recovery/command">"Recovery command."</Actual_command>
+        <Actual_command tool="adb" shell_command="shell echo '--wipe_data' >> /cache/recovery/command">"Wipe data"</Actual_command>
+        <Actual_command tool="adb" shell_command="shell echo '--wipe_cache' >> /cache/recovery/command">"Wipe cache."</Actual_command>
         <Actual_command tool="adb" shell_command="shell su -c 'echo 'boot-recovery ' > /cache/recovery/command'">"Recovery command."</Actual_command>
         <Actual_command tool="adb" shell_command="shell su -c 'echo '--wipe_data' >> /cache/recovery/command'">"Wipe data"</Actual_command>
         <Actual_command tool="adb" shell_command="shell su -c 'echo '--wipe_cache' >> /cache/recovery/command'">"Wipe cache."</Actual_command>
