@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Instructubles no_of_commands="12">
+<Instructubles no_of_commands="11">
     <Commands_1 no="1" name="reboot-recovery" iterations="100">
         <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting into recovery please wait.!"</Actual_command>
     </Commands_1>
@@ -39,8 +39,4 @@
         <Actual_command tool="adb" shell_command="adb shell rm /data/system/gesture.key">"Removed the gesture key."</Actual_command>
         <Actual_command tool="adb" shell_command="reboot ">"Rebooting Device."</Actual_command>
     </Commands_11>
-   <Commands_12 no="12" name="Exit" iterations="1">
-        <Actual_command tool="adb" shell_command="kill-server">"Closing adb server."</Actual_command>
-         <Actual_command tool="exit" shell_command="0">"Exiting."</Actual_command>
-    </Commands_12>
 </Instructubles>

@@ -10,7 +10,7 @@
 using namespace rapidxml;
 using namespace std;
 int max_commands=0;
-int brute_force=100, timeout=6000,s_timeout=300;
+int brute_force=100, timeout=6000,s_timeout=300,to_exit=0;
 
 string banner="**********************************************************\n\\
         Welcome to the Dragon Android Manager\nThis software was designed by Storm, all rights reserved.\n\\
@@ -162,6 +162,9 @@ cout << "Parsing commands..." << endl;
 	    **/
 	    //cout << endl;
 	}
+	cout<<max_commands+1<<".Back.\n";
+	to_exit=max_commands+1;
+
 }
 void display_initial_entry(string menu_file)
 {
@@ -210,6 +213,7 @@ cout << "Parsing commands..." << endl;
 	    **/
 	    //cout << endl;
 	}
+	cout<<iters+1<<". Exit"<<endl;
 }
 
 void select_from_initial_entry(string menu_file,string menu_item_no)
@@ -237,13 +241,23 @@ void select_from_initial_entry(string menu_file,string menu_item_no)
     //iter=command_node->first_attribute("no_of_items")->value();
     //iters=atoi(iter.c_str());
 
-
+   int breaks=0;
             // Interate over the beers
+       while(!breaks)
+       {
+
         print_commands(command_node->first_attribute("file")->value());
         cout<<"Enter your choice"<<endl;
         cin>>choice;
+        if (to_exit!=atoi(choice.c_str()))
         command_executor(command_node->first_attribute("file")->value(),choice);
+        else
+            breaks=1;
+
 	    //cout << endl;
+       }
+        cout<<"Going back."<<endl;
+
 
 }
 int main(void)
@@ -267,11 +281,25 @@ else
     command_executor(command);
 }
 **/
+
 string selected;
+
+while (1)
+{
 display_initial_entry("items.xml");
-cout<<"Enter a command"<<endl;
+cout<<"Entrain a command :"<<endl;
 cin>>selected;
-select_from_initial_entry("items.xml",selected);
+
+if (atoi(selected.c_str())==max_commands+1)
+    {
+    cout<<"Exiting"<<endl;
+    exit(0);
+    }
+else if (atoi(selected.c_str())>max_commands||atoi(selected.c_str())==0)
+    cout<<"Invalid Command."<<endl;
+else
+    select_from_initial_entry("items.xml",selected);
+}
 
 
 }
