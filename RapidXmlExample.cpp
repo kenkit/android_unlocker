@@ -69,14 +69,14 @@ void command_executor(string command)
 	    cout << endl;
 
 }
-void command_selector(string command)
+void command_selector(string filename,string command)
 {
 
     cout << "Parsing commands..." << endl;
 	xml_document<> doc;
 	xml_node<> * root_node;
 	// Read the xml file into a vector
-	ifstream theFile ("beerJournal.xml");
+	ifstream theFile (filename.c_str());
 	vector<char> buffer((istreambuf_iterator<char>(theFile)), istreambuf_iterator<char>());
 	buffer.push_back('\0');
 	// Parse the buffer using the xml file parsing library into doc
@@ -229,7 +229,6 @@ void select_from_initial_entry(string menu_file,string menu_item_no)
 	// Iterate over the brewerys
     string commansd="acvite_item_";
     string iter;
-    string ha=" ";
     int iters;
     commansd+=menu_item_no;
     string commands;
@@ -237,11 +236,11 @@ void select_from_initial_entry(string menu_file,string menu_item_no)
     xml_node<> * command_node = root_node->first_node(commansd.c_str());
     //iter=command_node->first_attribute("no_of_items")->value();
     //iters=atoi(iter.c_str());
-	    printf("Running %s command: %s no of times. \n",
-	    	command_node->first_attribute("file")->value());
-            // Interate over the beers
 
-	    cout << endl;
+
+            // Interate over the beers
+        print_commands(command_node->first_attribute("file")->value());
+	    //cout << endl;
 
 }
 int main(void)
@@ -269,7 +268,7 @@ string selected;
 display_initial_entry("items.xml");
 cout<<"Enter a command"<<endl;
 cin>>selected;
-select_from_initial_entry("items.xml","1");
+select_from_initial_entry("items.xml",selected);
 
 
 }
