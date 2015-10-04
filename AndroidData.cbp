@@ -34,6 +34,10 @@
 		</Compiler>
 		<Unit filename="RapidXmlExample.cpp" />
 		<Unit filename="adb_tools.xml" />
+		<Unit filename="icon.ico" />
+		<Unit filename="icon.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="items.xml" />
 		<Extensions>
 			<code_completion />
