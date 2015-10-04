@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Instructubles no_of_commands="10">
-    <Commands_1 no="1" name="reboot-recovery" iterations="100">
+    <Commands_1 no="1" name="reboot-recovery" iterations="1">
         <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting into recovery please wait.!"</Actual_command>
     </Commands_1>
     <Commands_2 no="2" name="install Standard user apps." iterations="1">
@@ -31,8 +31,8 @@
         <Actual_command tool="adb" shell_command="reboot recovery">"Rebooting Device."</Actual_command>
     </Commands_9>
    <Commands_10 no="10" name="Reset Pattern/Pin" iterations="1">
-        <Actual_command tool="adb" shell_command="shell sqlite3 /data/data/com.android.providers.settings/databases/settings.db 'update system set value=0 where name='lock_pattern_autolock';'">"Lock screen patter reset."</Actual_command>
-        <Actual_command tool="adb" shell_command="shell sqlite3 /data/data/com.android.providers.settings/databases/settings.db 'update system set value=0 where name='lockscreen.lockedoutpermanently';'">"Disable permanent lock."</Actual_command>
+        <Actual_command tool="adb" shell_command="shell echo 'update system set value=0 where name='lock_pattern_autolock';'  | sqlite3 /data/data/com.android.providers.settings/databases/settings.db ">"Lock screen patter reset."</Actual_command>
+        <Actual_command tool="adb" shell_command="shell echo 'update system set value=0 where name='lockscreen.lockedoutpermanently';'  | sqlite3 /data/data/com.android.providers.settings/databases/settings.db ">"Disable permanent lock."</Actual_command>
         <Actual_command tool="adb" shell_command="adb shell rm /data/system/gesture.key">"Removed the gesture key."</Actual_command>
         <Actual_command tool="adb" shell_command="reboot ">"Rebooting Device."</Actual_command>
     </Commands_10>
