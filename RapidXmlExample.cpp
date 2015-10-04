@@ -244,7 +244,7 @@ void select_from_initial_entry(string menu_file,string menu_item_no)
             // Interate over the beers
        while(!breaks)
        {
-        Sleep(s_timeout);
+        Sleep(timeout);
         ClearScreen();
         print_commands(command_node->first_attribute("file")->value());
         cout<<"Enter your choice"<<endl;
