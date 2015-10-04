@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Instructubles no_of_items="2">
-<acvite_item_1 no="1" item_name="Adb Tools" file="beerJournal.xml">"Displays Adb Tools."</acvite_item_1>
-<acvite_item_2 no="2" item_name="Fastboot Tools" file="beerJournal.xml">"Displays Fastboot Tools."</acvite_item_2>
+<Instructubles no_of_items="3">
+<acvite_item_1 no="1" item_name="Adb Tools" file="adb_tools.xml">"Displays Adb Tools."</acvite_item_1>
+<acvite_item_2 no="2" item_name="Fastboot Tools" file="fastboot_tools.xml">"Displays Fastboot Tools."</acvite_item_2>
+<acvite_item_3 no="3" item_name="Recovery Tools" file="recovery_tools.xml">"Displays Reocery Tools."</acvite_item_3>
 </Instructubles>

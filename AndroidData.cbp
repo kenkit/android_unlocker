@@ -33,7 +33,8 @@
 			<Add directory="../../desktop/prog" />
 		</Compiler>
 		<Unit filename="RapidXmlExample.cpp" />
-		<Unit filename="beerJournal.xml" />
+		<Unit filename="adb_tools.xml" />
+		<Unit filename="items.xml" />
 		<Extensions>
 			<code_completion />
 			<envvars />
